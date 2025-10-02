@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mega Reward Daily Bonus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Load Tailwind CSS for modern styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind Configuration for custom colors and font
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'reward-gold': '#f59e0b', // Amber
+            'reward-dark': '#b45309', // Dark Amber
+            'bg-start': '#4c1d95', // Deep Violet
+            'bg-end': '#7c3aed',   // Violet
+          }
+        }
+      }
+    }
+
+    // ========== SOUND AND CLAIM LOGIC ==========
+    
+    // 1. Audio Object: Loads a success sound effect when the user clicks.
+    // NOTE: You can replace this link with any other valid MP3 URL.
+    const rewardSound = new Audio('https://cdn.jsdelivr.net/gh/tailwindlabs/heroicons/assets/audio/check-circle.mp3');
+
+    /**
+     * This function is called when the button is clicked.
+     * It plays the sound and then loads the Monetag advertisement.
+     */
+    function claimAndPlaySound() {
+        // Step 1: Play the success sound.
+        // The .catch() handles browser restrictions on sound autoplay.
+        rewardSound.play().catch(e => console.log('Sound play error: Might be due to browser autoplay restrictions.', e));
+
+        // Step 2: Call the Monetag ad function (show_9944508)
+        // This function is provided by the external script loaded below.
+        if (typeof show_9944508 === 'function') {
+            show_9944508();
+        } else {
+            console.error("Monetag ad function (show_9944508) has not loaded yet.");
+        }
+    }
+  </script>
+  <style>
+    /* Custom keyframes for the exciting button glow effect */
+    @keyframes pulse-shadow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 20px 8px rgba(245, 158, 11, 0);
+      }
+    }
+
+    .pulsing-button {
+      animation: pulse-shadow 2s infinite;
+    }
+  </style>
+</head>
+<!-- Gradient Background for a premium, mobile-friendly look -->
+<body class="bg-gradient-to-br from-bg-start to-bg-end min-h-screen flex items-center justify-center font-sans p-4">
+
+  <!-- Main Reward Card Container -->
+  <div class="w-full max-w-md bg-white p-6 sm:p-10 rounded-3xl shadow-2xl text-center transition-all duration-300 transform hover:scale-[1.01] border-b-8 border-reward-gold">
+
+    <div class="text-4xl mb-4">?</div>
+    
+    <!-- Title -->
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
+      ?? Mega Reward Crate
+    </h2>
+    <p class="text-lg text-gray-600 mb-6">
+      Watch a quick ad and claim your **Daily Bonus** instantly!
+    </p>
+
+    <!-- Excitement Element: Limited availability -->
+    <div class="mb-8 p-3 bg-yellow-50 rounded-xl border border-reward-gold text-reward-dark font-semibold">
+      <p>?? Remaining for Today: <span id="prize-counter" class="text-xl">5</span> Rewards <span class="text-sm">(Limited Stock!)</span></p>
+    </div>
+
+    <!-- Monetag Ad Script -->
+    <script src='//libtl.com/sdk.js' data-zone='9944508' data-sdk='show_9944508'></script>
+    
+    <!-- Reward Button: Calls the JavaScript function to play sound and load ad -->
+    <button 
+      onclick="claimAndPlaySound()" 
+      class="w-full py-5 px-6 bg-reward-gold text-white font-black text-xl rounded-xl transition duration-150 ease-in-out hover:bg-reward-dark active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-reward-gold focus:ring-opacity-50 uppercase shadow-lg pulsing-button"
+    >
+      ?? CLAIM NOW
+    </button>
+    
+    <p class="mt-6 text-xs text-gray-400">
+        By claiming, you agree to view an advertisement.
+    </p>
+
+  </div>
+
+</body>
+</html>
