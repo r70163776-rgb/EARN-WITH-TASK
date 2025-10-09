@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <script src='//libtl.com/sdk.js' data-zone='10010275' data-sdk='show_10010275'></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Telegram Web App Tasks</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* dark theme similar to image */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #222;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  /* Tasks section */
+  .tasks {
+    padding: 10px;
+  }
+
+  .task {
+    background-color: #333;
+    margin: 10px 0;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .task-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .task-title {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+
+  .reward {
+    font-size: 0.9em;
+    color: #ccc;
+  }
+
+  /* Button styles */
+  .claim-btn {
+    background-color: #00aaff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .claim-btn:hover {
+    background-color: #0088cc;
+  }
+
+  /* Bottom navigation */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #222;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .bottom-nav button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Your App</h1>
+</header>
+
+<div class="tasks">
+  <!-- Watch short ads task -->
+  <div class="task">
+    <div class="task-info">
+      <div class="task-title">Watch short ads</div>
+      <div class="reward">Rewarded Interstitial</div>
+    </div>
+    <button class="claim-btn" onclick="claimReward('shortAds')">Claim</button>
+  </div>
+
+  <!-- Click to get reward task -->
+  <div class="task">
+    <div class="task-info">
+      <div class="task-title">Click to get reward</div>
+      <div class="reward">Rewarded Popup</div>
+    </div>
+    <button class="claim-btn" onclick="claimReward('popupReward')">Claim</button>
+  </div>
+
+  <!-- Watch video task -->
+  <div class="task">
+    <div class="task-info">
+      <div class="task-title">Watch video</div>
+      <div class="reward">In-App Interstitial</div>
+    </div>
+    <button class="claim-btn" onclick="claimReward('video')">Claim</button>
+  </div>
+</div>
+
+<!-- Bottom navigation -->
+<div class="bottom-nav">
+  <button title="Home" onclick="alert('Home')">🏠</button>
+  <button title="Favorites" onclick="alert('Favorites')">❤️</button>
+  <button title="Rewards" onclick="alert('Rewards')">🎁</button>
+  <button title="Get" onclick="alert('Get')">🚗</button>
+</div>
+
+<script>
+  // Example function for claim buttons
+  function claimReward(taskType) {
+    // You can replace this with your monetization zone ID logic
+    const zoneId = '10010275'; // replace with your actual zone ID
+
+    alert(`Reward claimed for ${taskType}!\nZone ID: ${zoneId}`);
+
+    // Here you can integrate your monetization or reward logic
+    // For example, call your API with zone ID or show ads
+  }
+</script>
+
+</body>
+</html>
